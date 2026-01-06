@@ -192,6 +192,171 @@
             background: #e74c3c;
         }
 
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2rem;
+            padding: 0;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s;
+            position: relative;
+        }
+
+        .modal-header {
+            position: relative;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            font-size: 28px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .close-btn:hover {
+            background: white;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-subtitle {
+            font-size: 1.1rem;
+            color: #e74c3c;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section h3 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+            border-left: 4px solid #e74c3c;
+            padding-left: 0.8rem;
+        }
+
+        .modal-section p, .modal-section li {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .modal-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .modal-section li:before {
+            content: "✓";
+            color: #27ae60;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .modal-badge {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
+                max-height: 95vh;
+            }
+
+            .modal-image {
+                height: 200px;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+        }
+
         /* 特色区域 */
         .features {
             background: white;
@@ -293,7 +458,7 @@
         <h2 class="section-title">当季推荐</h2>
         <div class="products-grid">
             <!-- 产品卡片 1 -->
-            <div class="product-card">
+            <div class="product-card" onclick="openModal(1)">
                 <div class="product-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
                 <div class="product-info">
                     <span class="product-badge hot">招牌</span>
@@ -312,7 +477,7 @@
             </div>
 
             <!-- 产品卡片 2 -->
-            <div class="product-card">
+            <div class="product-card" onclick="openModal(2)">
                 <div class="product-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
                 <div class="product-info">
                     <span class="product-badge new">人气</span>
@@ -331,7 +496,7 @@
             </div>
 
             <!-- 产品卡片 3 -->
-            <div class="product-card">
+            <div class="product-card" onclick="openModal(3)">
                 <div class="product-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
                 <div class="product-info">
                     <span class="product-badge">精选</span>
@@ -350,7 +515,7 @@
             </div>
 
             <!-- 产品卡片 4 -->
-            <div class="product-card">
+            <div class="product-card" onclick="openModal(4)">
                 <div class="product-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
                 <div class="product-info">
                     <span class="product-badge hot">热卖</span>
@@ -369,7 +534,7 @@
             </div>
 
             <!-- 产品卡片 5 -->
-            <div class="product-card">
+            <div class="product-card" onclick="openModal(5)">
                 <div class="product-image" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);"></div>
                 <div class="product-info">
                     <span class="product-badge new">推荐</span>
@@ -388,7 +553,7 @@
             </div>
 
             <!-- 产品卡片 6 -->
-            <div class="product-card">
+            <div class="product-card" onclick="openModal(6)">
                 <div class="product-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
                 <div class="product-info">
                     <span class="product-badge">健康</span>
@@ -446,7 +611,183 @@
         <p>&copy; 2026 万家厨房 - 让美食传递幸福</p>
     </footer>
 
+    <!-- 产品详情模态框 -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-image" id="modalImage"></div>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <span class="modal-badge" id="modalBadge"></span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-subtitle" id="modalSubtitle"></p>
+                <div class="modal-section">
+                    <h3>产品介绍</h3>
+                    <p id="modalDescription"></p>
+                </div>
+                <div class="modal-section">
+                    <h3>产品特色</h3>
+                    <ul id="modalFeatures"></ul>
+                </div>
+                <div class="modal-section">
+                    <h3>制作工艺</h3>
+                    <p id="modalProcess"></p>
+                </div>
+                <div class="modal-section">
+                    <h3>营养价值</h3>
+                    <p id="modalNutrition"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // 产品数据
+        const productsData = {
+            1: {
+                name: '臭豆腐',
+                badge: '招牌',
+                badgeType: 'hot',
+                subtitle: '长沙特色小吃 · 外酥里嫩 · 香辣可口',
+                description: '臭豆腐是长沙最具代表性的传统小吃之一，以其独特的风味和制作工艺闻名于世。经过传统工艺发酵的豆腐，外皮金黄酥脆，内里嫩滑鲜美，配上秘制的辣椒酱和香菜，味道层次丰富，让人回味无穷。',
+                gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                features: [
+                    '选用优质黄豆，传统工艺发酵，口感正宗',
+                    '外皮金黄酥脆，内里嫩滑鲜美，层次分明',
+                    '秘制酱料，香辣开胃，独家配方',
+                    '现炸现卖，保证最佳食用温度和口感'
+                ],
+                process: '采用精选优质黄豆，经过浸泡、磨浆、点卤、压制成型，再经过传统发酵工艺发酵7-10天，最后放入热油中炸至金黄，配以特制辣椒酱、蒜蓉、香菜等调料。',
+                nutrition: '富含优质植物蛋白，含有多种人体必需氨基酸。经过发酵后，产生了多种有益酶类，有助于消化吸收。适量食用可以增进食欲，促进消化。'
+            },
+            2: {
+                name: '鸡蛋仔',
+                badge: '人气',
+                badgeType: 'new',
+                subtitle: '香港经典 · 外酥里软 · 蛋香浓郁',
+                description: '鸡蛋仔是香港著名的街头小吃，以其独特的蜂窝状外观和松软香甜的口感深受喜爱。我们的鸡蛋仔采用正宗香港配方，新鲜鸡蛋制作，外脆内软，蛋香四溢，Q弹有嚼劲。',
+                gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                features: [
+                    '香港原配方，地道风味，正宗港式味道',
+                    '新鲜鸡蛋制作，蛋香四溢，奶香浓郁',
+                    '外脆内软，Q弹有嚼劲，口感丰富',
+                    '可搭配冰淇淋、水果等，百搭美味'
+                ],
+                process: '选用新鲜鸡蛋、低筋面粉、牛奶、糖等原料，按精确比例调配成面糊，倒入特制鸡蛋仔模具中烘烤，烤至金黄即可出炉。整个过程严格控制火候和时间，确保每个鸡蛋仔都达到最佳口感。',
+                nutrition: '富含优质蛋白质和多种维生素，鸡蛋提供必需氨基酸，面粉提供碳水化合物，为身体提供充足能量。适量食用有助于补充营养，增强体力。'
+            },
+            3: {
+                name: '章鱼小丸子',
+                badge: '精选',
+                badgeType: '',
+                subtitle: '日式风味 · 章鱼鲜嫩 · 外皮酥脆',
+                description: '章鱼小丸子是来自日本大阪的经典小吃，以其鲜美的章鱼肉和酥脆的外皮著称。我们的章鱼小丸子采用进口鲜章鱼，日式秘制配方，外皮金黄酥脆，内馅松软，章鱼肉质鲜甜，配上木鱼花和海苔粉，香味四溢。',
+                gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                features: [
+                    '进口鲜章鱼，肉质鲜甜，口感Q弹',
+                    '日式秘制配方，口感正宗，地道风味',
+                    '外皮金黄酥脆，内馅松软，层次分明',
+                    '木鱼花、海苔粉点缀，色香味俱全'
+                ],
+                process: '选用新鲜章鱼切成小丁，调配特制面糊，放入章鱼烧模具中，先煎章鱼丁，再倒入面糊，用竹签翻面烤至金黄，出炉后撒上木鱼花、海苔粉，淋上美乃滋和照烧酱。',
+                nutrition: '章鱼富含优质蛋白质、牛磺酸和多种微量元素，营养价值极高。具有增强免疫力、促进大脑发育、缓解疲劳等功效。是一道营养丰富的美食。'
+            },
+            4: {
+                name: '华夫饼',
+                badge: '热卖',
+                badgeType: 'hot',
+                subtitle: '比利时经典 · 格子花纹 · 松软香甜',
+                description: '华夫饼是比利时的经典美食，以其独特的格子花纹和松软香甜的口感闻名于世。我们的华夫饼采用比利时传统配方，松软香甜，口感丰富，可搭配蜂蜜、水果、冰淇淋等多种配料，满足不同口味需求。',
+                gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                features: [
+                    '比利时传统配方，地道欧洲风味',
+                    '松软香甜，口感丰富，甜而不腻',
+                    '可搭配蜂蜜、水果、冰淇淋等，百搭美味',
+                    '现做现卖，热气腾腾，新鲜出炉'
+                ],
+                process: '选用面粉、鸡蛋、牛奶、黄油、糖等原料，按传统比例调配成面糊，倒入华夫饼模具中烘烤至金黄色，出炉后根据个人喜好添加各种配料。',
+                nutrition: '富含碳水化合物和蛋白质，能为身体提供充足能量。鸡蛋和牛奶提供优质蛋白和钙质，有助于增强体质。适量食用有助于补充体力，缓解疲劳。'
+            },
+            5: {
+                name: '霸王肉串',
+                badge: '推荐',
+                badgeType: 'new',
+                subtitle: '超大肉串 · 肉质鲜嫩 · 烧烤风味',
+                description: '霸王肉串是我们的招牌烧烤产品，超大份量，肉质鲜嫩多汁。选用优质肉类，秘制腌料入味透彻，孜然香料调味，现串现烤保留肉汁，烧烤风味十足，是肉食爱好者的最爱。',
+                gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
+                features: [
+                    '精选优质肉类，肉质鲜嫩，纹理分明',
+                    '秘制腌料，入味透彻，口感丰富',
+                    '孜然香料调味，香味浓郁，风味独特',
+                    '现串现烤，保留肉汁，鲜嫩多汁'
+                ],
+                process: '精选新鲜肉类切成大块，用秘制腌料腌制6-8小时入味，然后用竹签串好，在炭火上现烤，期间刷上特制酱料，撒上孜然、辣椒粉等香料，烤至表面金黄微焦即可。',
+                nutrition: '富含优质蛋白质和多种维生素，肉类提供人体必需的氨基酸和铁质。有助于增强体质、促进肌肉生长、补充能量。是运动后补充蛋白质的绝佳选择。'
+            },
+            6: {
+                name: '鲜榨橙汁',
+                badge: '健康',
+                badgeType: '',
+                subtitle: '100%鲜橙现榨 · 酸甜适中 · 补充维C',
+                description: '鲜榨橙汁是我们最受欢迎的健康饮品，选用优质新鲜脐橙，100%原汁现榨，无添加无水，保留了橙子的全部营养和风味。酸甜适中，口感清爽，富含维生素C，是健康养生的最佳选择。',
+                gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+                features: [
+                    '精选新鲜脐橙，品质上乘，天然成熟',
+                    '100%原汁，无添加无水，纯正天然',
+                    '富含维生素C，健康养生，增强免疫',
+                    '现点现榨，新鲜营养，口感最佳'
+                ],
+                process: '选用优质新鲜脐橙，清洗干净后手工剥皮去籽，放入专业榨汁机现榨，立即装杯，从榨汁到出品不超过3分钟，确保最新鲜的口感和最高的营养价值。',
+                nutrition: '富含维生素C、维生素A、叶酸和钾等营养素，具有增强免疫力、促进铁吸收、抗氧化、美容养颜等多种功效。是每日健康饮品的最佳选择。'
+            }
+        };
+
+        // 打开模态框
+        function openModal(productId) {
+            const product = productsData[productId];
+            if (!product) return;
+
+            document.getElementById('modalImage').style.background = product.gradient;
+            document.getElementById('modalBadge').textContent = product.badge;
+            document.getElementById('modalTitle').textContent = product.name;
+            document.getElementById('modalSubtitle').textContent = product.subtitle;
+            document.getElementById('modalDescription').textContent = product.description;
+            document.getElementById('modalProcess').textContent = product.process;
+            document.getElementById('modalNutrition').textContent = product.nutrition;
+
+            const featuresList = document.getElementById('modalFeatures');
+            featuresList.innerHTML = '';
+            product.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+
+            document.getElementById('productModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭模态框
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // 点击模态框外部关闭
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // ESC键关闭模态框
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
         // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
